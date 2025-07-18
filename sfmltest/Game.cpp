@@ -20,12 +20,21 @@ void Game::initWindow() {
     this->window->setVerticalSyncEnabled(vsync_enabled);
 }
 
-void Game::initStates() {
-    this->states.push(new GameState(this->window));
+void Game::initKeys() {
+    this->supportedKeys.emplace("Escape", sf::Keyboard::Key::Escape);
+    this->supportedKeys.emplace("A", sf::Keyboard::Key::A);
+    this->supportedKeys.emplace("D", sf::Keyboard::Key::D);
+    this->supportedKeys.emplace("S", sf::Keyboard::Key::S);
+    this->supportedKeys.emplace("W", sf::Keyboard::Key::W);
+
 }
 
+void Game::initStates() {
+    this->states.push(new GameState(this->window, &(this->supportedKeys)) );
+}
 Game::Game() {
     this->initWindow();
+    this->initKeys();
     this->initStates();
 }
 
@@ -39,13 +48,13 @@ Game::~Game() {
 
 void Game::endApplication() {
 
-    std::println("ending application");
+    //std::println("ending application");
 }
 
 void Game::updateDt() {
     this->dt = this->dtClock.restart().asSeconds();
     system("cls");
-    std::println("{} delta time", this->dt);
+   // std::println("{} delta time", this->dt);
 }
 
 

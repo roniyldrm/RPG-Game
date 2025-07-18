@@ -5,14 +5,18 @@ class Game {
 private:
 	// vars
 	sf::RenderWindow* window;
-	std::optional<sf::Event> sfEvent;
 	sf::Clock dtClock;
+
+	std::optional<sf::Event> sfEvent;
 	std::stack<State*> states;
+	std::map<const char*, sf::Keyboard::Key> supportedKeys;
+
 	float dt;
 
 	// inits
 	void initWindow();
 	void initStates();
+	void initKeys();
 public:
 
 	// ctors/dtors
