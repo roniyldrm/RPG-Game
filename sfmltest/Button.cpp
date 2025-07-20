@@ -4,8 +4,8 @@ Button::Button(float x, float y, float width, float height, sf::Font* font, cons
 	const sf::Color& idleColor, const sf::Color& hoverColor, const sf::Color& activeColor) 
 	: buttonState(BTN_IDLE), font(font), idleColor(idleColor), hoverColor(hoverColor), activeColor(activeColor) {
 	
-	this->shape.setSize({ x,y });
-	this->shape.setPosition({ width, height });
+	this->shape.setPosition({ x,y });
+	this->shape.setSize({ width, height });
 
 	this->text = new sf::Text(*this->font, std::move(text));
 

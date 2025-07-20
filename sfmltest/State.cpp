@@ -1,9 +1,8 @@
 #include "State.h"
 #include "GameState.h"
 
-State::State(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys) 
-	: window(window), quit(false), supportedKeys(supportedKeys)
-{
+State::State(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys, std::stack<State*>& states)
+	: window(window), quit(false), supportedKeys(supportedKeys), states(states){
 
 }
 

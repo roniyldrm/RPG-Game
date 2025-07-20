@@ -1,16 +1,16 @@
 #pragma once
 #include "MainMenuState.h"
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys)
-	: State(window, supportedKeys){
+MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys, std::stack<State*>& states)
+	: State(window, supportedKeys, states){
 	
 	this->initFonts();
 	this->initKeyBinds();
 
-	this->buttons["GAME_STATE"] = new Button(100, 30, 150, 50, &this->font, "Start New Game",
+	this->buttons["GAME_STATE"] = new Button( 150, 50, 100, 30, &this->font, "Start New Game",
 			sf::Color{70, 70, 70, 200}, sf::Color{ 150, 150, 150, 255}, sf::Color{ 20, 20, 20, 200 });
 
-	this->buttons["EXIT_STATE"] = new Button(100, 30, 150, 150, &this->font, "Quit",
+	this->buttons["EXIT_STATE"] = new Button(150, 150, 100, 30,  &this->font, "Quit",
 		sf::Color{ 70, 70, 70, 200 }, sf::Color{ 150, 150, 150, 255 }, sf::Color{ 20, 20, 20, 200 });
 
 	this->background.setSize({ static_cast<float>(window->getSize().x),static_cast<float>(window->getSize().y) });
@@ -55,13 +55,19 @@ void MainMenuState::updateButtons() {
 		btn.second->update(this->mousePosView);
 	}
 	
+
+	if (this->buttons["GAME_STATE"]->isPressed()) {
+		auto&& newGS = new GameState(this->window, this->supportedKeys, this->states);
+		this->states.push(std::forward<decltype(newGS)>(newGS));
+	}
+
 	if (this->buttons["EXIT_STATE"]->isPressed()) {
 		this->quit = true;
 	}
 
 }
 void MainMenuState::initKeyBinds() {
-	std::ifstream ifs("Config/gamestate_keybinds.ini");
+	std::ifstream ifs("Config/mainmenustate_keybinds.ini");
 
 	if (ifs.is_open()) {
 		std::string key = "";

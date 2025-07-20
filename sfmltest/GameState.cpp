@@ -2,9 +2,8 @@
 #include "GameState.h"
 
 
-GameState::GameState(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys)
-	: State(window, supportedKeys) 
-{
+GameState::GameState(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys, std::stack<State*>& states)
+	: State(window, supportedKeys, states) {
 	this->initKeyBinds();
 }
 
@@ -13,7 +12,6 @@ GameState::~GameState() {
 }
 
 void GameState::update(const float& dt) {
-	//std::println("hello gamestate");
 	this->updateMousePositions();
 
 	this->updateInput(dt);
