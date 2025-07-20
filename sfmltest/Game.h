@@ -1,5 +1,6 @@
 #pragma once
-#include "GameState.h"
+
+#include "MainMenuState.h"
 class Game {
 
 private:
@@ -9,7 +10,8 @@ private:
 
 	std::optional<sf::Event> sfEvent;
 	std::stack<State*> states;
-	std::map<const char*, sf::Keyboard::Key> supportedKeys;
+
+	std::map<std::string, sf::Keyboard::Key> supportedKeys;
 
 	float dt;
 

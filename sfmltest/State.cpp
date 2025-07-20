@@ -1,7 +1,7 @@
 #include "State.h"
 #include "GameState.h"
 
-State::State(sf::RenderWindow* window, std::map<const char*, sf::Keyboard::Key>* supportedKeys) 
+State::State(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys) 
 	: window(window), quit(false), supportedKeys(supportedKeys)
 {
 
@@ -10,12 +10,18 @@ State::State(sf::RenderWindow* window, std::map<const char*, sf::Keyboard::Key>*
 State::~State() {
 }
 
-const bool& State::getQuit() const {
+auto State::getQuit() const -> const bool& {
 	return this->quit;
 }
 
 void State::checkForQuit() {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE")))) {
 		this->quit = true;
 	}
+}
+
+void State::updateMousePositions() {
+	this->mousePosScreen = sf::Mouse::getPosition();
+	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
+	this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 }

@@ -6,9 +6,13 @@ private:
 
 protected:
 	sf::RenderWindow* window;
-	std::map<const char*, sf::Keyboard::Key>* supportedKeys;
-	std::map<const char*, sf::Keyboard::Key> keybinds;
+	std::map<std::string, sf::Keyboard::Key>* supportedKeys;
+	std::map<std::string, sf::Keyboard::Key> keybinds;
 	bool quit;
+
+	sf::Vector2i mousePosScreen;
+	sf::Vector2i mousePosWindow;
+	sf::Vector2f mousePosView;
 
 	// resources
 	std::vector<sf::Texture> textures;
@@ -16,12 +20,13 @@ protected:
 	//functions
 	virtual void initKeyBinds() = 0;
 public:
-	State(sf::RenderWindow* window, std::map<const char*, sf::Keyboard::Key>* supportedKeys);
+	State(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
 	virtual ~State();
 
-	const bool& getQuit() const;
+	auto getQuit() const -> const bool&;
 	virtual void checkForQuit();
 
+	virtual void updateMousePositions();
 
 	virtual void endState() = 0;
 	virtual void updateInput(const float& dt) = 0;
