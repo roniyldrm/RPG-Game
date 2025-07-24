@@ -1,14 +1,16 @@
 #pragma once
 
-#include "MainMenuState.h"
+#include "MainMenuState.hpp"
 class Game {
 
 private:
 	// vars
 	sf::RenderWindow* window;
+	sf::ContextSettings window_settings;
 	sf::Clock dtClock;
-
+	bool fullscreen;
 	std::optional<sf::Event> sfEvent;
+	std::vector<sf::VideoMode> videoModes;
 	std::stack<State*> states;
 
 	std::map<std::string, sf::Keyboard::Key> supportedKeys;
@@ -16,6 +18,7 @@ private:
 	float dt;
 
 	// inits
+	void initVars();
 	void initWindow();
 	void initStates();
 	void initKeys();

@@ -1,4 +1,4 @@
-#include "Button.h"
+#include "Button.hpp"
 
 Button::Button(float x, float y, float width, float height, sf::Font* font, const std::string& text ,
 	const sf::Color& idleColor, const sf::Color& hoverColor, const sf::Color& activeColor) 

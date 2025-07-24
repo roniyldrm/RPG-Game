@@ -19,6 +19,9 @@
     <Filter Include="Entities">
       <UniqueIdentifier>{55b86479-5225-4748-ad7c-4f3261150c08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{91ccd8f6-c676-47b7-9a46-a4b7112af7b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,25 +45,37 @@
     <ClCompile Include="Button.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
+    <ClInclude Include="GameState.hpp">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="State.h">
+    <ClInclude Include="State.hpp">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="Entity.hpp">
       <Filter>Entities</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenuState.h">
+    <ClInclude Include="MainMenuState.hpp">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="Button.hpp">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.hpp">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

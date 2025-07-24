@@ -1,12 +1,14 @@
 #pragma once
-#include "State.h"
+#include "State.hpp"
 
 class GameState : public State{
 private:
-	Entity player;
+	Player* player;
 
 	//functions
+	void initPlayers();
 	void initKeyBinds();
+	void initTextures();
 public:
 	GameState(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys, std::stack<State*>& states);
 	virtual ~GameState();
@@ -15,6 +17,5 @@ public:
 	void update(const float& dt);
 	void render(sf::RenderTarget* target);
 	void updateInput(const float& dt);
-	void endState();
 };
 

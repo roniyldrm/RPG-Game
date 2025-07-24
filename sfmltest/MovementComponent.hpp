@@ -13,22 +13,22 @@
 #include <stack>
 #include <map>
 
-class Entity {
-
+class MovementComponent {
 private:
+	float maxVelocity;
+	sf::Vector2f velocity;
+	sf::Vector2f acceleration;
+	sf::Vector2f deceleration;
 
-protected:
-	sf::RectangleShape shape;
-	float movementSpeed;
-
+	//inits
 public:
-	Entity();
-	virtual ~Entity();
+	MovementComponent(float maxVelocity);
+	virtual ~MovementComponent();
+	
 
+	const sf::Vector2f& getVelocity();
 
-	// functions
-	virtual void move(const float& dt, const float dir_x, const float dir_y);
-	virtual void update(const float& dt);
-	virtual void render(sf::RenderTarget* target);
+	void move(const sf::Vector2f& dir);
+	void update(const float& dt);
 };
 
